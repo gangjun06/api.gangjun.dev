@@ -2,13 +2,16 @@
   "name": "server",
   "version": "1.0.0",
   "main": "app.js",
-  "license": "GPL",
+  "license": "GPL-3.0",
   "dependencies": {
     "express": "^4.17.1",
     "express-promise-router": "^3.0.3",
     "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.1",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
   }
 }
