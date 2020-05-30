@@ -36,8 +36,11 @@ module.exports = {
     const token = signToken(req.user.id);
     res.status(200).json({ token });
   },
+  facebookOAuth: (req, res, next) => {
+    const token = signToken(req.user.f_id);
+    res.status(200).json({ token });
+  },
   secret: async (req, res, next) => {
-    console.log("secret called");
-    res.end();
+    res.status(200).json({ secret: "resource" });
   },
 };

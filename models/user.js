@@ -20,8 +20,19 @@ module.exports = {
     });
     return result[0];
   },
+  createfUser: async (id, email) => {
+    const result = await DB("user").insert({
+      f_id: id,
+      f_email: email,
+    });
+    return result[0];
+  },
   findUserById: async (id) => {
     const result = await DB("user").where("id", id);
+    return result[0];
+  },
+  findUserByfId: async (id) => {
+    const result = await DB("user").where("f_id", id);
     return result[0];
   },
   findUserByEmail: async (email) => {
