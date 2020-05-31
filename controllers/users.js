@@ -22,10 +22,7 @@ module.exports = {
     try {
       user = await User.createUser(email, password);
     } catch (error) {
-      if (error.code === "ER_DUP_ENTRY") {
-        return res.status(403).json({ error: "Email is already in use" });
-      }
-      return res.json({ error });
+      return res.status(304).json({ error });
     }
 
     // res.json({ user: user[0] });

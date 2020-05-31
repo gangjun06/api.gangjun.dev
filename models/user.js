@@ -14,10 +14,14 @@ module.exports = {
     email = email.toLowerCase();
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
-    const result = await DB("user").insert({
-      email,
-      password: passwordHash,
-    });
+    const result = await DB("user")
+      .insert({
+        email,
+        password: passwordHash,
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
     return result[0];
   },
   createfUser: async (id, email) => {
