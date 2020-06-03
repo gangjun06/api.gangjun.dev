@@ -19,13 +19,26 @@ router
     UserController.signIn
   );
 
-router
-  .route("/oauth/facebook")
-  .post(
-    passport.authenticate("facebookToken", { session: false }),
-    UserController.facebookOAuth
-  );
+router.route("/signout").get(passportJWT, UsersController.signOut);
+// router
+//   .route("/oauth/facebook")
+//   .post(
+//     passport.authenticate("facebookToken", { session: false }),
+//     UserController.facebookOAuth
+//   );
 
-router.route("/secret").get(passportJwt, UserController.secret);
+// router
+//   .route("/oauth/link/facebook")
+//   .post(
+//     passportJwt,
+//     passport.authenticate("facebookToken", { session: false }),
+//     UserController.linkFacebookOAuth
+//   );
+
+// router
+//   .route("/oauth/unlink/facebook")
+//   .post(passportJwt, UserController.unlinkFacebookOAuth);
+
+router.route("/status").get(passportJwt, UserController.checkAuth);
 
 module.exports = router;

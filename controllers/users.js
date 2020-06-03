@@ -27,17 +27,37 @@ module.exports = {
 
     // res.json({ user: user[0] });
     const token = signToken(user);
+    res.cookie("access_token", token, {
+      httpOnly: true,
+    });
     return res.status(200).json({ token });
   },
   signIn: async (req, res, next) => {
     const token = signToken(req.user.id);
+    res.cookie("access_token", token, {
+      httpOnly: true,
+    });
     res.status(200).json({ token });
   },
-  facebookOAuth: (req, res, next) => {
-    const token = signToken(req.user.f_id);
-    res.status(200).json({ token });
+  signOut: async (req, res, next) => {
+    res.clearCookie("access_token");
+    res.json({ success: true });
   },
-  secret: async (req, res, next) => {
-    res.status(200).json({ secret: "resource" });
+  // facebookOAuth: (req, res, next) => {
+  //   const token = signToken(req.user.f_id);
+  //   res.cookie("access_token", token, {
+  //     httpOnly: true,
+  //   });
+  //   res.status(200).json({ success: true });
+  // },
+  // linkFacebookOAuth: (req, res, next) => {
+  //   res.json({
+  //     success: true,
+  //     message: "Successfully unlinked account from Facebook",
+  //   });
+  // },
+  // unlinkFacebookOAuth: (req, res, next) => {},
+  checkAuth: async (req, res, next) => {
+    res.status(200).json({ success: true });
   },
 };
