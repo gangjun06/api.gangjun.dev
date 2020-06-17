@@ -35,10 +35,6 @@ module.exports = {
     const result = await DB("user").where("id", id);
     return result[0];
   },
-  findUserByfId: async (id) => {
-    const result = await DB("user").where("f_id", id);
-    return result[0];
-  },
   findUserByEmail: async (email) => {
     const result = await DB("user").where("email", email);
     return result[0];

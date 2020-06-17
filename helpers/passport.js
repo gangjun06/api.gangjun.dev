@@ -28,36 +28,6 @@ passport.use(
   )
 );
 
-passport.use(
-  "facebookToken",
-  new FaceBookTokenStrategy(
-    {
-      clientID: config.facebook.id,
-      clientSecret: config.facebook.secret,
-    },
-    async (accessToken, refreshToken, profile, done) => {
-      try {
-        const existingUser = await User.findUserByfId(profile.id);
-        if (existingUser == undefined) {
-          const newUser = await User.createfUser(
-            profile.id,
-            profile.emails[0].value
-          );
-          return done(null, {
-            id: newUser,
-            email: null,
-            password: null,
-            f_id: profile.id,
-            f_email: profile.emails[0].value,
-          });
-        }
-        return done(null, existingUser);
-      } catch (error) {
-        done(error, null);
-      }
-    }
-  )
-);
 
 passport.use(
   new LocalStrategy(

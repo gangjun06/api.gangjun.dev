@@ -20,5 +20,11 @@ module.exports = {
       email: Joi.string().email().required(),
       password: Joi.string().required(),
     }),
+    signUpSchema: Joi.object().keys({
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+      nickname: Joi.string().required(),
+      lang: Joi.string().required(),
+    }),
   },
 };

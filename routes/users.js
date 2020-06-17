@@ -5,7 +5,7 @@ const passport = require("passport");
 const passportConf = require("./../helpers/passport");
 
 const passportSingIn = passport.authenticate("local", { session: false });
-const passportJwt = passport.authenticate("jwt", { session: false });
+const passportJWT = passport.authenticate("jwt", { session: false });
 
 router
   .route("/signup")
@@ -14,31 +14,11 @@ router
 router
   .route("/signin")
   .post(
-    validateBody(schemas.authSchema),
+    validateBody(schemas.signUpSchema),
     passportSingIn,
     UserController.signIn
   );
 
-router.route("/signout").get(passportJWT, UsersController.signOut);
-// router
-//   .route("/oauth/facebook")
-//   .post(
-//     passport.authenticate("facebookToken", { session: false }),
-//     UserController.facebookOAuth
-//   );
-
-// router
-//   .route("/oauth/link/facebook")
-//   .post(
-//     passportJwt,
-//     passport.authenticate("facebookToken", { session: false }),
-//     UserController.linkFacebookOAuth
-//   );
-
-// router
-//   .route("/oauth/unlink/facebook")
-//   .post(passportJwt, UserController.unlinkFacebookOAuth);
-
-router.route("/status").get(passportJwt, UserController.checkAuth);
+router.route("/status").get(passportJWT, UserController.checkAuth);
 
 module.exports = router;
