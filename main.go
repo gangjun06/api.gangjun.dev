@@ -7,6 +7,8 @@ import (
 	"strconv"
 	"time"
 
+	v1 "github.com/gangjun06/api.gangjun.dev/routes/v1"
+
 	"github.com/BurntSushi/toml"
 	"github.com/gangjun06/api.gangjun.dev/middlewares"
 	"github.com/gangjun06/api.gangjun.dev/models"
@@ -47,5 +49,7 @@ func startServer() {
 	}
 	r := gin.Default()
 	r.Use(middlewares.Cors())
+	version1 := r.Group("/v1")
+	v1.InitRoutes(version1)
 	r.Run(":" + strconv.Itoa(config.Port))
 }
