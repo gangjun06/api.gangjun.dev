@@ -3,6 +3,7 @@ module github.com/gangjun06/api.gangjun.dev
 go 1.15
 
 require (
+	github.com/BurntSushi/toml v0.3.1
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-playground/validator/v10 v10.4.0 // indirect
 	github.com/golang/protobuf v1.4.2 // indirect

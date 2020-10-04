@@ -1,0 +1,7 @@
+[server]
+port = 9096
+debug = true
+
+[auth]
+username = "asdf"
+password = "qwerty"
