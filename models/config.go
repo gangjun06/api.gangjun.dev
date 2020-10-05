@@ -19,4 +19,7 @@ type Config struct {
 	Discord struct {
 		Bot string
 	}
+	ReCAPTCHA struct {
+		SecretKey string
+	}
 }
