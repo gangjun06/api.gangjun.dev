@@ -21,8 +21,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          source: "api.gangjun.dev"
-          target: "api.gangjun.dev/main"
+          source: "./api.gangjun.dev"
+          target: "api.gangjun.dev"
       - name: Setting to server
         uses: appleboy/ssh-action@master
         with:
