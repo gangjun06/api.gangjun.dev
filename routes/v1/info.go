@@ -8,6 +8,5 @@ import (
 func SetInfoRoutes(r *gin.RouterGroup) {
 	r.GET("/discord", c.Discord)
 	r.GET("/githubcontributionscount", c.GithubContributionsCount)
-	r.GET("/website", c.GetWebsite)
-	r.POST("/website", c.SetWebsite)
+	r.GET("/value", c.GetValue)
 }
