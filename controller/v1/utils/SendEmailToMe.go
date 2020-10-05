@@ -33,7 +33,7 @@ func SendEmailToMe(c *gin.Context) {
 	resp.ToJSON(data)
 	fmt.Println(data)
 
-	if err := utils.SendEmailToMe(body.Title, "Send By: "+body.Email+"\n\n"+body.Text) != nil{
+	if err := utils.SendEmailToMe(body.Title, "Send By: "+body.Email+"\n\n"+body.Text); err != nil {
 		r.SendError(resutil.ERR_SERVER, "Error sending email")
 		return
 	}
