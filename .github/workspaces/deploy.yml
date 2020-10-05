@@ -1,0 +1,38 @@
+name: Deploy To Server
+on:
+  push:
+    branches:
+      - master
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Golang
+        uses: actions/setup-go@v2
+        with:
+          go-version: "^1.14.6"
+      - name: Build File
+        run: env GOOS=linux GOARCH=arm GOARM=5 go build
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          source: "api.gangjun.dev"
+          target: "api.gangjun.dev/main"
+      - name: Setting to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+           export PATH="$PATH:`yarn global bin`"
+           rm main
+           mv api.gangjun.dev main
+           pm2 list | grep api.gangjun.dev && pm2 restart api.gangjun.dev
+           pm2 start ./main -n api.gangjun.dev
