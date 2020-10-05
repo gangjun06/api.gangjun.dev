@@ -15,7 +15,7 @@ const (
 	ERR_AUTH
 )
 
-func SendError(c *gin.Context, errType ErrType, text string) {
+func (r *res) SendError(errType ErrType, text string) {
 	var Message, ErrCode string
 	var Status int
 
@@ -36,9 +36,9 @@ func SendError(c *gin.Context, errType ErrType, text string) {
 		set("ERR_AUTH", text, http.StatusUnauthorized)
 	}
 
-	c.JSON(Status, gin.H{
+	r.c.JSON(Status, gin.H{
 		"code":    ErrCode,
 		"message": Message,
 	})
-	c.Abort()
+	r.c.Abort()
 }

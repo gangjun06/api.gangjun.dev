@@ -8,12 +8,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Response(c *gin.Context, data interface{}) {
+type res struct {
+	c *gin.Context
+}
+
+func New(c *gin.Context) *res {
+	return &res{c}
+}
+
+func (r *res) Response(data interface{}) {
 	m := make(map[string]interface{})
 	m["code"] = "SUCCESS"
 	m["message"] = ""
 	j, _ := json.Marshal(data)
 	json.Unmarshal(j, &m)
 	fmt.Println(m)
-	c.JSON(http.StatusOK, m)
+	r.c.JSON(http.StatusOK, m)
 }

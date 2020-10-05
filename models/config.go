@@ -16,4 +16,7 @@ type Config struct {
 		Password string
 		DBName   string
 	}
+	Discord struct {
+		Bot string
+	}
 }
