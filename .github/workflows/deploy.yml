@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-           export PATH="$PATH:`yarn global bin`"
+           source ~/.bashrc
            rm main
            mv api.gangjun.dev main
            pm2 list | grep api.gangjun.dev && pm2 restart api.gangjun.dev
