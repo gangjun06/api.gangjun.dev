@@ -18,3 +18,9 @@ bot = ""
 
 [reCAPTCHA]
 secretKey = ""
+
+[mailgun]
+domain = "example.com"
+receiver = "foo@example.com"
+sender = "Foo <me@example.com>"
+apiKey = "asdf"

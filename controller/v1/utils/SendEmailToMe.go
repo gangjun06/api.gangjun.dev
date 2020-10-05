@@ -1,6 +1,8 @@
 package utils
 
 import (
+	"fmt"
+
 	reqmodels "github.com/gangjun06/api.gangjun.dev/models/req"
 	"github.com/gangjun06/api.gangjun.dev/utils"
 	resutil "github.com/gangjun06/api.gangjun.dev/utils/res"
@@ -29,4 +31,12 @@ func SendEmailToMe(c *gin.Context) {
 
 	var data map[string]interface{}
 	resp.ToJSON(data)
+	fmt.Println(data)
+
+	if err := utils.SendEmailToMe(body.Title, "Send By: "+body.Email+"\n\n"+body.Text) != nil{
+		r.SendError(resutil.ERR_SERVER, "Error sending email")
+		return
+	}
+
+	r.Response(map[string]interface{}{})
 }

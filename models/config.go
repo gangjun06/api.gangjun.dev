@@ -22,4 +22,10 @@ type Config struct {
 	ReCAPTCHA struct {
 		SecretKey string
 	}
+	Mailgun struct {
+		Domain  string
+		Sender  string
+		ApiKey  string
+		Reciver string
+	}
 }
