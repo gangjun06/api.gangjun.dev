@@ -23,9 +23,9 @@ type Config struct {
 		SecretKey string
 	}
 	Mailgun struct {
-		Domain  string
-		Sender  string
-		ApiKey  string
-		Reciver string
+		Domain   string
+		Sender   string
+		ApiKey   string
+		Receiver string
 	}
 }

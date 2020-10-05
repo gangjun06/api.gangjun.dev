@@ -24,16 +24,21 @@ func SendEmailToMe(c *gin.Context) {
 		"response": body.Captcha,
 	}
 
-	resp, err := req.Post("ttps://www.google.com/recaptcha/api/siteverify", param, header)
+	resp, err := req.Post("https://www.google.com/recaptcha/api/siteverify", param, header)
 	if err != nil {
-		r.SendError(resutil.ERR_BAD_REQUEST, "error wlhile request to recaptcha")
+		r.SendError(resutil.ERR_SERVER, "error wlhile request to recaptcha")
+		return
 	}
 
 	var data map[string]interface{}
-	resp.ToJSON(data)
-	fmt.Println(data)
+	resp.ToJSON(&data)
+	if !data["success"].(bool) {
+		r.SendError(resutil.ERR_BAD_REQUEST, "captcha token is invalid")
+		return
+	}
 
 	if err := utils.SendEmailToMe(body.Title, "Send By: "+body.Email+"\n\n"+body.Text); err != nil {
+		fmt.Println(err.Error())
 		r.SendError(resutil.ERR_SERVER, "Error sending email")
 		return
 	}

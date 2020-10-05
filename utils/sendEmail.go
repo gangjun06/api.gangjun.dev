@@ -7,7 +7,7 @@ func SendEmailToMe(subject string, body string) error {
 
 	mg := mailgun.NewMailgun(config.Domain, config.ApiKey)
 
-	message := mg.NewMessage(config.Sender, subject, body, config.Reciver)
+	message := mg.NewMessage(config.Sender, subject, body, config.Receiver)
 
 	_, _, err := mg.Send(message)
 	return err
