@@ -9,4 +9,11 @@ type Config struct {
 		Username string
 		Password string
 	}
+	DB struct {
+		Hostname string
+		Port     int
+		Username string
+		Password string
+		DBName   string
+	}
 }

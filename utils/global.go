@@ -2,10 +2,12 @@ package utils
 
 import (
 	"github.com/gangjun06/api.gangjun.dev/models"
+	"gorm.io/gorm"
 )
 
 var (
 	gConfig *models.Config
+	gDB     *gorm.DB
 )
 
 func SetConfig(config *models.Config) {
@@ -14,4 +16,12 @@ func SetConfig(config *models.Config) {
 
 func GetConfig() *models.Config {
 	return gConfig
+}
+
+func SetDB(db *gorm.DB) {
+	gDB = db
+}
+
+func GetDB() *gorm.DB {
+	return gDB
 }

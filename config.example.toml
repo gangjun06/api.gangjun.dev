@@ -5,3 +5,10 @@ debug = true
 [auth]
 username = "asdf"
 password = "qwerty"
+
+[db]
+hostname = ""
+port = ""
+username = ""
+password = ""
+dbname = ""
