@@ -32,6 +32,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
            source ~/.bashrc
+           cd api.gangjun.dev
            rm main
            mv api.gangjun.dev main
            pm2 list | grep api.gangjun.dev && pm2 restart api.gangjun.dev
