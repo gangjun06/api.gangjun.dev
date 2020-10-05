@@ -38,5 +38,4 @@ jobs:
            cd api.gangjun.dev
            rm main
            mv api.gangjun.dev main
-           ~/.yarn/bin/pm2 list | grep api.gangjun.dev && ~/.yarn/bin/pm2 restart api.gangjun.dev
-           ~/.yarn/bin/pm2 start ./main -n api.gangjun.dev
+           if [[ $(~/.yarn/bin/pm2 list | grep api.gangjun.dev) ]]; then ~/.yarn/bin/pm2 restart api.gangjun.dev; else ~/.yarn/bin/pm2 start ./main -n api.gangjun.dev; fi
